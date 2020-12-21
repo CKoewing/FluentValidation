@@ -219,7 +219,7 @@ namespace FluentValidation.Internal {
 		/// </summary>
 		public List<PropertyRule<T>> DependentRules { get; }
 
-		public Func<object, object> Transformer { get; set; }
+		public Func<object, object, object> Transformer { get; set; }
 
 		string IValidationRule.GetDisplayName(IValidationContext context) =>
 			GetDisplayName(context != null ? ValidationContext<T>.GetFromNonGenericContext(context) : null);
@@ -389,7 +389,7 @@ namespace FluentValidation.Internal {
 
 		private object GetPropertyValue(T instanceToValidate) {
 			var value = PropertyFunc(instanceToValidate);
-			if (Transformer != null) value = Transformer(value);
+			if (Transformer != null) value = Transformer(instanceToValidate, value);
 			return value;
 		}
 

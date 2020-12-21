@@ -137,7 +137,7 @@ namespace FluentValidation.Internal {
 					newContext.PropertyChain.Add(propertyName);
 					newContext.PropertyChain.AddIndexer(indexer, useDefaultIndexFormat);
 
-					var valueToValidate = Transformer != null ? Transformer(element) : element;
+					var valueToValidate = Transformer != null ? Transformer(context.InstanceToValidate, element) : element;
 					var propertyNameToValidate = newContext.PropertyChain.ToString();
 					var totalFailuresInner = context.Failures.Count;
 
@@ -247,7 +247,7 @@ namespace FluentValidation.Internal {
 					newContext.PropertyChain.Add(propertyName);
 					newContext.PropertyChain.AddIndexer(indexer, useDefaultIndexFormat);
 
-					var valueToValidate = Transformer != null ? Transformer(element) : element;
+					var valueToValidate = Transformer != null ? Transformer(context.InstanceToValidate, element) : element;
 					var propertyNameToValidate = newContext.PropertyChain.ToString();
 					var totalFailuresInner = context.Failures.Count;
 
